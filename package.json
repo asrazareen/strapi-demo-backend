@@ -18,7 +18,7 @@
   "dependencies": {
     "@strapi/plugin-cloud": "5.38.0",
     "@strapi/plugin-users-permissions": "5.38.0",
-    "@strapi/strapi": "5.38.0",
+    "@strapi/strapi": "^5.39.0",
     "firebase-admin": "^13.7.0",
     "fs-extra": "^10.0.0",
     "json2csv": "^6.0.0-alpha.2",
