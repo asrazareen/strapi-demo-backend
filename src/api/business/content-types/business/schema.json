@@ -1,0 +1,61 @@
+{
+    "kind": "collectionType",
+    "collectionName": "businesses",
+    "info": {
+        "singularName": "business",
+        "pluralName": "businesses",
+        "displayName": "Business"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "description": {
+            "type": "text"
+        },
+        "address": {
+            "type": "text"
+        },
+        "city": {
+            "type": "string"
+        },
+        "latitude": {
+            "type": "float"
+        },
+        "longitude": {
+            "type": "float"
+        },
+        "email": {
+            "type": "email"
+        },
+        "phone": {
+            "type": "string"
+        },
+        "logo": {
+            "type": "media",
+            "multiple": false,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "owner": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+        },
+        "services": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::service.service",
+            "mappedBy": "business"
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "kind": "collectionType",
+    "collectionName": "bookings",
+    "info": {
+        "singularName": "booking",
+        "pluralName": "bookings",
+        "displayName": "Booking"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "customer_name": {
+            "type": "string"
+        },
+        "customer_email": {
+            "type": "email"
+        },
+        "customer_phone": {
+            "type": "string"
+        },
+        "booking_time": {
+            "type": "datetime"
+        },
+        "service": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::service.service",
+            "inversedBy": "booking",
+            "required": true
+        },
+        "availability": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::availability.availability",
+            "inversedBy": "booking",
+            "required": true
+        },
+        "user": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "bookings"
+        },
+        "booking_status": {
+            "type": "enumeration",
+            "default": "confirmed",
+            "enum": ["confirmed", "pending", "completed", "rejected"]
+        },
+        "customerFcmToken": {
+            "type": "string",
+            "description": "Firebase Cloud Messaging token for customer push notifications"
+        }
+    }
+}

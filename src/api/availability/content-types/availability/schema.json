@@ -1,0 +1,40 @@
+{
+    "kind": "collectionType",
+    "collectionName": "availabilities",
+    "info": {
+        "singularName": "availability",
+        "pluralName": "availabilities",
+        "displayName": "Availability"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "date": {
+            "type": "date"
+        },
+        "start_time": {
+            "type": "time"
+        },
+        "end_time": {
+            "type": "time"
+        },
+        "is_booked": {
+            "type": "boolean",
+            "default": false
+        },
+        "service": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::service.service",
+            "inversedBy": "availabilities"
+        },
+        "booking": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::booking.booking",
+            "mappedBy": "availability"
+        }
+    }
+}

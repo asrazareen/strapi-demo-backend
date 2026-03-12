@@ -1,0 +1,56 @@
+{
+    "kind": "collectionType",
+    "collectionName": "services",
+    "info": {
+        "singularName": "service",
+        "pluralName": "services",
+        "displayName": "Service"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "price": {
+            "type": "decimal",
+            "required": true
+        },
+        "duration": {
+            "type": "integer"
+        },
+        "description": {
+            "type": "text"
+        },
+        "start_time": {
+            "type": "time"
+        },
+        "end_time": {
+            "type": "time"
+        },
+        "days_open": {
+            "type": "json"
+        },
+        "business": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::business.business",
+            "inversedBy": "services"
+        },
+        "availabilities": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::availability.availability",
+            "mappedBy": "service"
+        },
+        "booking": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "api::booking.booking",
+            "mappedBy": "service"
+        }
+    }
+}

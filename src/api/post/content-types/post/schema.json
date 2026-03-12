@@ -1,0 +1,27 @@
+{
+    "kind": "collectionType",
+    "collectionName": "posts",
+    "info": {
+        "singularName": "post",
+        "pluralName": "posts",
+        "displayName": "Post"
+    },
+    "options": {
+        "draftAndPublish": false
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "title": {
+            "type": "string"
+        },
+        "content": {
+            "type": "text"
+        },
+        "users_permissions_user": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "plugin::users-permissions.user",
+            "inversedBy": "posts"
+        }
+    }
+}
