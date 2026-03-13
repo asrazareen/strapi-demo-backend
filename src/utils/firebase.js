@@ -6,36 +6,39 @@ const fs = require("fs");
 let firebaseAdmin = null;
 
 const getFirebaseAdmin = () => {
-    if (firebaseAdmin) {
-        return firebaseAdmin;
+  if (firebaseAdmin) {
+    return firebaseAdmin;
+  }
+
+  const serviceAccountPath = path.resolve(
+    process.cwd(),
+    "config/firebase-service-account.js",
+  );
+
+  if (!fs.existsSync(serviceAccountPath)) {
+    return null;
+  }
+
+  try {
+    let serviceAccount = require(serviceAccountPath);
+
+    // Handle ESM default export if present
+    if (serviceAccount.default) {
+      serviceAccount = serviceAccount.default;
     }
 
-    const serviceAccountPath = path.resolve(
-        process.cwd(),
-        "config/firebase-service-account.json"
-    );
-
-    if (!fs.existsSync(serviceAccountPath)) {
-        return null;
+    if (!admin.apps.length) {
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+      });
     }
 
-    try {
-        const serviceAccount = JSON.parse(
-            fs.readFileSync(serviceAccountPath, "utf-8")
-        );
-
-        if (!admin.apps.length) {
-            admin.initializeApp({
-                credential: admin.credential.cert(serviceAccount),
-            });
-        }
-
-        firebaseAdmin = admin;
-        return firebaseAdmin;
-    } catch (error) {
-        console.error("Failed to initialize Firebase Admin SDK:", error);
-        return null;
-    }
+    firebaseAdmin = admin;
+    return firebaseAdmin;
+  } catch (error) {
+    console.error("Failed to initialize Firebase Admin SDK:", error);
+    return null;
+  }
 };
 
 module.exports = { getFirebaseAdmin };

@@ -220,17 +220,17 @@ module.exports = strapi_1.factories.createCoreController(
       });
 
       const fields = [
-        "BookingID",
-        "Business",
-        "Service",
-        "Date",
-        "StartTime",
-        "EndTime",
-        "Customer",
-        "Email",
-        "BookingStatus",
-        "SlotStatus",
-        "BookedAt",
+        { label: "Booking ID", value: "BookingID" },
+        { label: "Business", value: "Business" },
+        { label: "Service", value: "Service" },
+        { label: "Date", value: "Date" },
+        { label: "Start Time", value: "StartTime" },
+        { label: "End Time", value: "EndTime" },
+        { label: "Customer", value: "Customer" },
+        { label: "Email", value: "Email" },
+        { label: "Booking Status", value: "BookingStatus" },
+        { label: "Slot Status", value: "SlotStatus" },
+        { label: "Booked At", value: "BookedAt" },
       ];
 
       const parser = new json2csv_1.Parser({ fields });
