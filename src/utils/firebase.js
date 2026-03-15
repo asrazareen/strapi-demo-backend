@@ -12,7 +12,7 @@ const getFirebaseAdmin = () => {
 
   const serviceAccountPath = path.resolve(
     process.cwd(),
-    "config/firebase-service-account.js",
+    "src/utils/firebase-service-account.js",
   );
 
   if (!fs.existsSync(serviceAccountPath)) {
@@ -21,6 +21,10 @@ const getFirebaseAdmin = () => {
 
   try {
     let serviceAccount = require(serviceAccountPath);
+
+    if (!serviceAccount?.private_key || !serviceAccount?.client_email) {
+      return null;
+    }
 
     // Handle ESM default export if present
     if (serviceAccount.default) {
