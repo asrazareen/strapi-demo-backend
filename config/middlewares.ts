@@ -10,8 +10,9 @@ const config: Core.Config.Middlewares = [
       origin: [
         "http://localhost:3000",
         "http://localhost:8080",
-        "https://inspired-cuddle-d3e5ba66dc.strapiapp.com",
+        // "https://inspired-cuddle-d3e5ba66dc.strapiapp.com",
         "http://simpalm-strapi-demo.s3-website-us-east-1.amazonaws.com",
+        "http://inspired-cuddle-d3e5ba66dc.strapiapp.com",
       ],
       headers: "*",
       exposeHeaders: "*",
