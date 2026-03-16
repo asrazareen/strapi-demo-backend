@@ -544,8 +544,7 @@ export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
     availability: Schema.Attribute.Relation<
       'oneToOne',
       'api::availability.availability'
-    > &
-      Schema.Attribute.Required;
+    >;
     booking_status: Schema.Attribute.Enumeration<
       ['confirmed', 'pending', 'completed', 'rejected']
     > &
@@ -565,8 +564,7 @@ export interface ApiBookingBooking extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    service: Schema.Attribute.Relation<'oneToOne', 'api::service.service'> &
-      Schema.Attribute.Required;
+    service: Schema.Attribute.Relation<'manyToOne', 'api::service.service'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -730,7 +728,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::availability.availability'
     >;
-    booking: Schema.Attribute.Relation<'oneToOne', 'api::booking.booking'>;
+    bookings: Schema.Attribute.Relation<'oneToMany', 'api::booking.booking'>;
     business: Schema.Attribute.Relation<'manyToOne', 'api::business.business'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
